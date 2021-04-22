@@ -1,0 +1,8 @@
+[build-system]
+	# PEP 518 - what is required to build
+    requires = ["setuptools", "wheel"]
+
+# PEP 517 - what function to call to build
+build-backend = "setuptools.build_meta"
+
+
