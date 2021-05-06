@@ -690,12 +690,12 @@ class AppWindow(Gtk.ApplicationWindow):
 
     def on_as_python_clicked(self, action, parameter):
         print("as_python clicked")
-        self.MV.wrap_selection("```py\n", "\n```")
+        self.MV.wrap_selection("```py\n", "```")
         self.MV.is_dirty = True
 
     def on_as_text_clicked(self, action, parameter):
         print("as_text clicked")
-        self.MV.wrap_selection("```text\n", "\n```")
+        self.MV.wrap_selection("```text\n", "```")
         self.MV.is_dirty = True
 
     def on_insert_image_clicked(self, action, parameter):

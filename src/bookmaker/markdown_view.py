@@ -50,7 +50,7 @@ class MyRenderer(HTMLRenderer):
             formatter = html.HtmlFormatter()
             return highlight(code, lexer, formatter)
         else:
-            return '<pre><code>' + escape(code) + '</code></pre>'
+            return escape(code)
 
 
 class MARKDOWNview(Gtk.ScrolledWindow):

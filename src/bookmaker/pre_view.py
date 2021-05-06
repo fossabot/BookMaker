@@ -31,8 +31,12 @@ html_header2 = """
     .inline {
         display:inline;
     }
-    table, td, th {
+    code {
+        background-color: #e6e6e6;
+    }        
+    table, th, td {
         border: 1px solid black;
+        padding: 5px;
     }
     table {
         width: 100%;
@@ -140,8 +144,9 @@ class PREview(WebKit2.WebView):
 
 
         css_directory = self.TV.css_directory
-        print(f'directory of pre_view.py is {css_directory}')
-        print(f'pre_view css from {css_directory}')
+        # print(f'directory of pre_view.py is {css_directory}')
+        # print(f'pre_view css from {css_directory}')
+
         # First we display the xhtml generated from the Markdown in the preview pane
         href1 = "{0}/github-markdown.css".format(os.path.abspath(css_directory))
         href2 = "{0}/github-pygments.css".format(os.path.abspath(css_directory))
