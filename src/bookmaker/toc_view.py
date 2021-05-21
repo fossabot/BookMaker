@@ -11,7 +11,7 @@ import uuid
 
 from contextlib import contextmanager
 
-from .XMLforEPUB import container_xml, content_opf, toc_xhtml, toc_xhtml_end, toc_ncx, toc_ncx_end, cover_xhtml
+from XMLforEPUB import container_xml, content_opf, toc_xhtml, toc_xhtml_end, toc_ncx, toc_ncx_end, cover_xhtml
 
 import gi
 gi.require_version('Gtk', '3.0')
@@ -108,7 +108,7 @@ close_bracket_html="""
 
 
 class TOCview(Gtk.ScrolledWindow):
-    from .toc_utils import   \
+    from toc_utils import   \
         table_of_contents,  \
         toc_scan,  \
         re_number,  \
@@ -234,7 +234,7 @@ class TOCview(Gtk.ScrolledWindow):
                 self.book_css_directory = os.path.join(self.book_directory, '_css')
                 if not os.path.exists(self.book_css_directory):
                     # make the _book/_css directory and put our project css in it
-                    shutil.copytree(os.path.join(self.project_directory, '_css'), self.book_css_directory)
+                    shutil.copytree(os.path.join(self.book_directory, '_css'), self.book_css_directory)
 
                 self.epub_directory = self.project_directory + "/_epub"  # created/emptied if user does "export to epub"
                 self.pdf_directory = self.project_directory + "/_pdf"  # created/emptied if user does "export to pdf"

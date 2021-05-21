@@ -4,7 +4,7 @@
 import codecs
 import gi
 
-from .sync_scroll import SyncScroll
+from sync_scroll import SyncScroll
 
 gi.require_version('Gtk', '3.0')
 gi.require_version('GtkSource', '3.0')
@@ -15,10 +15,10 @@ from pygments import highlight
 from pygments.lexers import get_lexer_by_name
 from pygments.formatters import html
 
-from .derivation import plugin_derivation
-from .my_extra import plugin_my_extra
-from .my_table import plugin_my_table
-from .my_footnotes import plugin_my_footnotes
+from derivation import plugin_derivation
+from my_extra import plugin_my_extra
+from my_table import plugin_my_table
+from my_footnotes import plugin_my_footnotes
 
 item_no = 0
 

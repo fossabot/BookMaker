@@ -3,6 +3,7 @@
 import os
 import shutil
 import sys
+import platform
 
 import gi
 
@@ -13,9 +14,10 @@ gi.require_version('Gdk', '3.0')
 gi.require_version('GdkPixbuf', '2.0')
 from gi.repository import Gio, Gtk, GdkPixbuf
 
-from .toc_view import TOCview
-from .markdown_view import MARKDOWNview
-from .pre_view import PREview
+import about
+from toc_view import TOCview
+from markdown_view import MARKDOWNview
+from pre_view import PREview
 
 # The following declarations allow the application to be invoked from anywhere
 # and access its database and .glade files etc. relative to its source directory.
@@ -31,23 +33,7 @@ def where_am_i():  # use to find ancillary files e.g. .glade files
     return dirname(getsourcefile(Common))
 
 
-NAME = 'BookMaker'
-VERSION = 2.0
-COPYRIGHT = 'Copyright © 2020 Marcris Software'
-DESCRIPTION = 'A Book Authoring Application in Python - inspired by Gitbook-Legacy'
-AUTHORS = [
-    'Chris Brown <chris@marcrisoft.co.uk>'
-]
 UPSTART_LOGO = where_am_i() + '/logo.svg'
-
-DEFAULT_WIN_SIZE_WIDTH = 600
-DEFAULT_WIN_SIZE_HEIGHT = 200
-
-DEFAULT_LOGO_SIZE_WIDTH = 150
-DEFAULT_LOGO_SIZE_HEIGHT = 150
-
-LICENSE_FILE = '/usr/share/common-licenses/GPL-2'
-WEBSITE = 'http://www.marcrisoft.co.uk'
 
 UI_MENU = """
 <?xml version="1.0" encoding="UTF-8"?>
@@ -453,6 +439,8 @@ class AppWindow(Gtk.ApplicationWindow):
         self.connect('destroy', self.on_destroy)
         self.connect('delete-event', self.on_delete_event)
 
+        print(f'This is {about.NAME} version {about.VERSION} using Python {platform.python_version()}')
+
         self.vbox = Gtk.VBox()
 
         self.builder = Gtk.Builder()
@@ -753,22 +741,22 @@ class AppWindow(Gtk.ApplicationWindow):
         """
         Show an About dialog.
         """
-        about = Gtk.AboutDialog()
-        about.set_program_name(NAME)
-        about.set_version("%s %s" % ('Version', VERSION))
-        about.set_copyright(COPYRIGHT)
-        about.set_comments(DESCRIPTION)
-        about.set_authors(AUTHORS)
-        about.set_website(WEBSITE)
+        dialog = Gtk.AboutDialog()
+        dialog.set_program_name(about.NAME)
+        dialog.set_version("%s %s" % ('Version', about.VERSION))
+        dialog.set_copyright(about.COPYRIGHT)
+        dialog.set_comments(about.DESCRIPTION)
+        dialog.set_authors(about.AUTHORS)
+        # dialog.set_website(about.WEBSITE)
 
-        about.set_license_type(Gtk.License.GPL_2_0)
+        dialog.set_license_type(Gtk.License.MIT_X11)
 
         pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale(
             UPSTART_LOGO,
-            DEFAULT_LOGO_SIZE_WIDTH, DEFAULT_LOGO_SIZE_HEIGHT, True)
-        about.set_logo(pixbuf)
-        about.run()
-        about.destroy()
+            about.DEFAULT_LOGO_SIZE_WIDTH, about.DEFAULT_LOGO_SIZE_HEIGHT, True)
+        dialog.set_logo(pixbuf)
+        dialog.run()
+        dialog.destroy()
 
 
 class Application(Gtk.Application):
