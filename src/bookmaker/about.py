@@ -6,7 +6,7 @@
 # or in setup.cfg
 
 NAME = 'BookMaker'
-VERSION = '0.26b2'
+VERSION = '0.26b3'
 COPYRIGHT = 'Copyright © 2021 Chris Brown and Marcris Software'
 DESCRIPTION = 'A Book Authoring Application in Python - inspired by Gitbook-Legacy'
 AUTHORS = [
